@@ -6,7 +6,7 @@ const connectDB = require("./config/db");
 const errorHandler = require("./middleware/error");
 // Route files
 const bootcamps = require("./routes/bootcamp");
-
+const courses = require("./routes/courses");
 // Load env variables
 dotenv.config({
   path: "./config/config.env",
@@ -25,6 +25,7 @@ if (process.env.NODE_ENV === "development") {
 }
 // Router
 app.use("/api/v1/bootcamps", bootcamps);
+app.use("/api/v1/courses", courses);
 
 app.use(errorHandler);
 // Port configuration
