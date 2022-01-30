@@ -1,6 +1,8 @@
 const express = require("express");
 const dotenv = require("dotenv");
-
+const logger = require("./middleware/logger");
+const morgan = require("morgan");
+const connectDB = require("./config/db");
 // Route files
 const bootcamps = require("./routes/bootcamp");
 
@@ -10,6 +12,13 @@ dotenv.config({
 });
 // Server initialization
 const app = express();
+
+// Database connection
+connectDB();
+// Developer Logging middleware
+if (process.env.NODE_ENV === "development") {
+  app.use(morgan("dev"));
+}
 app.use("/api/v1/bootcamps", bootcamps);
 // Port configuration
 const PORT = process.env.PORT || 5000;
