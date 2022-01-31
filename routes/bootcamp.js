@@ -6,7 +6,14 @@ const {
   updateBootcamp,
   deleteBootcamp,
 } = require("../controllers/bootcamps");
-const router = express.Router();
+
+// Conjunction with other routers
+
+const courseRouter = require("./courses");
+
+const router = express.Router({ mergeParams: true });
+
+router.use("/:bootcampId/courses", courseRouter);
 router.route("/").get(getBootcamps).post(createBootcamp);
 router
   .route("/:id")
