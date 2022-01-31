@@ -50,6 +50,7 @@ const sendTokenResponse = (user, res) => {
     .cookie("token", token, options)
     .json({ success: true, token: token });
 };
+
 // @desc Get current logged in user
 // @route GET /api/v 1/auth/login
 // @access Private
